@@ -1,7 +1,7 @@
-This repository stands for laboratory work for HSE University subject "Discrete models and algorithms complexity". \
+This repository stands for laboratory work for HSE University subject "Discrete models and algorithms complexity".
 
 ## Task
- - Need to implement Prim algorithm for solving "Minimal spanning tree" task which is based on:
+ - Needs to implement Prim algorithm for solving "Minimum Spanning Tree" task which is based on:
    - 2-heap
    - Fibonacci heap
 
