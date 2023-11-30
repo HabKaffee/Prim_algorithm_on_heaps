@@ -3,6 +3,7 @@
 #include <iostream>
 
 int main() {
+    // Graph testing
     GraphNode* graph = new GraphNode(5);
     std::cout << graph->getValue() << std::endl;
     GraphNode* newNode = new GraphNode(2);
