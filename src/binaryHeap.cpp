@@ -66,6 +66,9 @@ void BinaryHeap::insertElement(GraphNode *element) {
 }
 
 void BinaryHeap::siftUp(int idx) {
+  if (idx == 0) {
+    return;
+  }
   int parentIndex = (idx - 1) / 2;
   while (compareNodes(this->heap[idx]->getValue(),
                       this->heap[parentIndex]->getValue())) {
@@ -94,9 +97,34 @@ void BinaryHeap::siftDown(int idx) {
   }
 }
 
-bool BinaryHeap::search(GraphNode *target) {}
+bool BinaryHeap::search(GraphNode *target) {
+  return std::find(this->heap.begin(), this->heap.end(), target) !=
+         this->heap.end();
+}
 
-void BinaryHeap::deleteElement(int idx) {}
+// Delete root from heap
+void BinaryHeap::extractRoot() {
+  std::swap(this->heap[0], this->heap[this->heap.size() - 1]);
+  this->heap.pop_back();
+  siftDown(0);
+}
+
+// Delete an arbitrary element from heap
+void BinaryHeap::deleteElement(int idx) {
+  std::swap(this->heap[idx], this->heap[this->heap.size() - 1]);
+  this->heap.pop_back();
+  int parentIndex = (idx - 1) / 2;
+  // Heap is already correct
+  if (compareNodes(this->heap[idx]->getValue(),
+                   this->heap[parentIndex]->getValue())) {
+    return;
+  }
+  if (this->isMaxHeap) {
+    siftUp(idx);
+  } else {
+    siftDown(idx);
+  }
+}
 
 void BinaryHeap::increaseKey(int idx, int newKey) {}
 void BinaryHeap::decreaseKey(int idx, int newKey) {}

@@ -35,6 +35,7 @@ public:
 
   bool search(GraphNode *target);
 
+  void extractRoot();
   void deleteElement(int idx);
 
   void increaseKey(int idx, int newKey);
