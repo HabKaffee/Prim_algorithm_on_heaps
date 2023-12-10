@@ -32,22 +32,27 @@ class BinaryHeap:
 
     def sift_up(self, vertex):
         '''Swaps vertex and parent until minheap constraints are satisfied'''
-        if vertex == 0:
-            return
+        
+        weight_vertex = self.weight_array[vertex]
+        name_vertex = self.vertex_array[vertex]
+        
         parent = self.find_parent(vertex)
-        while self.weight_array[vertex] < self.weight_array[parent]:
+        while (vertex != 0) and (self.weight_array[vertex] < self.weight_array[parent]):
             self.swap(vertex, parent)
             vertex = parent
             parent = self.find_parent(vertex)
+        
+        self.weight_array[vertex] = weight_vertex
+        self.vertex_array[vertex] = name_vertex
 
     def sift_down(self, vertex):
         '''Swaps min child with parent until minheap constraints are satisfied'''
-        heap_size = self.vertex_array
-        while 2 * vertex + 1 < heap_size:
+        heap_size = len(self.vertex_array)
+        while (2 * vertex + 1) < heap_size:
             left_child = 2 * vertex + 1
             right_child = 2 * vertex + 2
             min_child = left_child
-            if (right_child < heap_size) and self.weight_array[right_child] > self.weight_array[left_child]:
+            if (right_child < heap_size) and self.weight_array[right_child] < self.weight_array[left_child]:
                 min_child = right_child
             self.swap(vertex, min_child)
             vertex = min_child

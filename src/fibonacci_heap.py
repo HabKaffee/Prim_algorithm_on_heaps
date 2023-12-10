@@ -1,11 +1,10 @@
 '''This file contains implementation of Fibonacci heap with all required objects'''
 
-from numpy import log
+from numpy import log2
 
 
 class FibonacciHeap:
     '''Fibonacci heap implementation'''
-
     class Node:
         '''Fibonacci heap node'''
         def __init__(self, key, value):
@@ -93,7 +92,7 @@ class FibonacciHeap:
 
     def consolidate(self):
         '''Make the degrees of root elements unique, fibonacci sequence'''
-        degree_arr = [None for _ in range(int(log(self.num_of_nodes, 2)) + 2)]
+        degree_arr = [None for _ in range(int(log2(self.num_of_nodes)) + 2)]
         root_items = self.layer_as_list(self.min)
         for n in root_items:
 
@@ -157,7 +156,7 @@ class FibonacciHeap:
             self.remove_node(node)
 
         # add to the root level
-        node.flag = False
+        node.marked = False
         self.add_node_left(node, self.min)
         if node.key < self.min.key:
             self.min = node
@@ -166,11 +165,11 @@ class FibonacciHeap:
         '''Reorganizes the heap to keep in optimal form'''
         parent = node.parent
         if parent is not None:
-            if parent.flag:
+            if parent.marked:
                 self.cut(node)
                 self.cascading_cut(parent)
             else:
-                parent.flag = True
+                parent.marked = True
 
     def merge(self, heap):
         '''Merges two heaps in O(1) time'''
