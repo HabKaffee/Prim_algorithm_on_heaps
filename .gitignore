@@ -34,3 +34,4 @@
 .vscode*
 bin
 build
+src/__pycache__/*
