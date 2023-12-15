@@ -6,4 +6,10 @@ This repository stands for laboratory work for HSE University subject "Discrete 
    - Fibonacci heap
 
 ## Project structure
-To be done later
+src
+  - __init__.py
+  - binary_heap.py
+  - fibonacci_heap.py
+  - prims_algorithm.py
+  - utils.py
+Report is presented in main.ipynb
